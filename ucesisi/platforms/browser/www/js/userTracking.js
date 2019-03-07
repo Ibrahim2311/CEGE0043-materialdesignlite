@@ -10,7 +10,8 @@ function showPosition(position) {
         mymap.removeLayer(userMarker);
         }
     userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
-    mymap.flyTo([position.coords.latitude, position.coords.longitude], 18)
+    // mymap.flyTo([position.coords.latitude, position.coords.longitude], 18)
+    getDistance()
 }
 
 
@@ -27,12 +28,12 @@ function getDistanceFromPoint(position) {
     var lng = -0.13818;
     // return the distance in kilometers
     var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat,lng, 'K');
-    if (distance <= 0.1) {
-    	alert("you are within 100 meters from UCL main campus");
+    if (distance <= 1) {
+    	alert("you are within 1 Km from UCL main campus");
     }
-    else {
-    	alert("you are not within 100 meters from UCL main campus");
-    }
+    // else {
+    // 	alert("you are not within 100 meters from UCL main campus");
+    // }
 }
 
 function calculateDistance(lat1, lon1, lat2, lon2, unit) {
