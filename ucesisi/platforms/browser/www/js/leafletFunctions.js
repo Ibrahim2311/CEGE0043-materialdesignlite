@@ -21,6 +21,7 @@ function addPointLinePoly() {
 };
 
 var client;
+var earthquakes;
 function getEarthquakes() {
     client = new XMLHttpRequest();
     url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson"
@@ -41,7 +42,7 @@ function dataResponse() {
 function loadLayer(geoJSONData) {
 // which layer did we actually load?
     // convert the text to JSON
-    var json = JSON.parse(geoJSONData);
-    earthquakelayer = L.geoJson(json).addTo(mymap);
+    earthquakes = JSON.parse(geoJSONData);
+    earthquakelayer = L.geoJson(earthquakes).addTo(mymap);
     mymap.fitBounds(earthquakelayer.getBounds());
 }
