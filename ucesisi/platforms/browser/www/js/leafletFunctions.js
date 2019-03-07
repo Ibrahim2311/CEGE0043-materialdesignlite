@@ -21,7 +21,7 @@ function addPointLinePoly() {
 };
 
 var client;
-function loadEarthquakeData() {
+function getEarthquakes() {
     client = new XMLHttpRequest();
     url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson"
     client.open('GET',url);
