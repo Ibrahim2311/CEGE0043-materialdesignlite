@@ -11,7 +11,7 @@ function showPosition(position) {
         }
     userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
     // mymap.flyTo([position.coords.latitude, position.coords.longitude], 18)
-    getDistanceFromMultiplePoints()
+    getDistanceFromMultiplePoints(position)
 }
 
 
