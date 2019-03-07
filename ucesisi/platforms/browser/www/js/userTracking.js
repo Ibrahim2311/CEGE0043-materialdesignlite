@@ -11,7 +11,7 @@ function showPosition(position) {
         }
     userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
     // mymap.flyTo([position.coords.latitude, position.coords.longitude], 18)
-    getDistance()
+    getDistanceFromMultiplePoints()
 }
 
 
@@ -51,4 +51,21 @@ function calculateDistance(lat1, lon1, lat2, lon2, unit) {
     if (unit=="K") { dist = dist * 1.609344 ;} // convert miles to km
     if (unit=="N") { dist = dist * 0.8684 ;} // convert miles to nautical miles
     return dist;
+}
+
+
+function getDistanceFromMultiplePoints(position) {
+	var minDistance = Number.MAX_SAFE_INTEGER;
+	var closestQuake = "";
+	for(var i = 0; i < earthquakes.features.length; i++) {
+		var obj = earthquakes.features[i];
+		var distance = calculateDistance(position.coords.latitude, position.coords.longitude,
+			                             obj.geometry.coordinates[0], obj.geometry.coordinates[1],
+			                             'K');
+		if (distance < minDistance) {
+			minDistance = distance;
+			closestQuake = obj.properties.place;
+		}
+	}
+	alert("Earthquake: " + closestQuake + " is distance " + minDistance + "away");
 }
